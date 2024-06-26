@@ -89,6 +89,7 @@ fun LoginScreen(
     val keyboardController = LocalSoftwareKeyboardController.current
 
     fun checkForInformation(email: String, password: String) {
+
         if (email.isEmpty() || password.isEmpty()) {
             Log.i("Login in function", "Incomplete information")
             Toast.makeText(context, "Please fill complete information", Toast.LENGTH_LONG).show()
