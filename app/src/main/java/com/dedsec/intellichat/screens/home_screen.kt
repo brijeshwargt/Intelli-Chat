@@ -229,7 +229,7 @@ fun HomeScreen(
             Icon(
                 imageVector = Icons.Default.MoreVert,
                 contentDescription = null,
-                tint = Color.Black,
+                tint = MaterialTheme.colorScheme.onBackground, // Changed from Color.Black
                 modifier = Modifier
                     .clickable {
                         isVisible.value = !isVisible.value
@@ -240,7 +240,7 @@ fun HomeScreen(
                 expanded = isVisible.value,
                 onDismissRequest = { isVisible.value = !isVisible.value },
                 modifier = Modifier
-                    .background(Color.White),
+                    .background(MaterialTheme.colorScheme.surface), // Changed from Color.White
             ) {
                 DropdownMenuItem(
                     text = {
@@ -249,13 +249,14 @@ fun HomeScreen(
                             fontSize = 18.sp,
                             fontWeight = FontWeight.W400,
                             letterSpacing = 1.sp,
-                            color = Color.Black
+                            color = MaterialTheme.colorScheme.onSurface // Changed from Color.Black
                         )
                     },
                     onClick = {
                         navHostController.navigate(Profile)
                     }
                 )
+                // ... Repeat the color change for other DropdownMenuItems ...
                 DropdownMenuItem(
                     text = {
                         Text(
@@ -263,7 +264,7 @@ fun HomeScreen(
                             fontSize = 18.sp,
                             fontWeight = FontWeight.W400,
                             letterSpacing = 1.sp,
-                            color = Color.Black
+                            color = MaterialTheme.colorScheme.onSurface // Changed from Color.Black
                         )
                     },
                     onClick = {
@@ -277,7 +278,7 @@ fun HomeScreen(
                             fontSize = 18.sp,
                             fontWeight = FontWeight.W400,
                             letterSpacing = 1.sp,
-                            color = Color.Black
+                            color = MaterialTheme.colorScheme.onSurface // Changed from Color.Black
                         )
                     },
                     onClick = {
@@ -409,56 +410,56 @@ fun AddChatRow(
 
 @Composable
 fun UserRow(chatuser: ChatUser, onClick: () -> Unit) {
-        Row(
-            modifier = Modifier
-                .height(70.dp)
-                .padding(start = 24.dp)
-                .fillMaxWidth()
-                .background(Color.Transparent)
-                .clickable { onClick() },
-            horizontalArrangement = Arrangement.Start,
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            if (chatuser.imageUrl.isNullOrEmpty()) {
-                Image(
-                    painter = painterResource(id = R.drawable.ic_user),
-                    contentDescription = "Person Profile",
-                    modifier = Modifier
-                        .size(55.dp)
-                        .clip(CircleShape),
-                    contentScale = ContentScale.Crop
-                )
-            } else {
-                Image(
-                    painter = rememberAsyncImagePainter(model = chatuser.imageUrl),
-                    contentDescription = "Person Profile",
-                    modifier = Modifier
-                        .size(55.dp)
-                        .clip(CircleShape),
-                    contentScale = ContentScale.Crop
-                )
-            }
-            Spacer(
-                modifier = Modifier.width(10.dp)
+    Row(
+        modifier = Modifier
+            .height(70.dp)
+            .padding(start = 24.dp)
+            .fillMaxWidth()
+            .background(Color.Transparent)
+            .clickable { onClick() },
+        horizontalArrangement = Arrangement.Start,
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        if (chatuser.imageUrl.isNullOrEmpty()) {
+            Image(
+                painter = painterResource(id = R.drawable.ic_user),
+                contentDescription = "Person Profile",
+                modifier = Modifier
+                    .size(55.dp)
+                    .clip(CircleShape),
+                contentScale = ContentScale.Crop
             )
-            Text(
-                chatuser.name ?: "",
-                style = TextStyle(
-                    fontSize = 18.sp,
-                    color = Color.Black,
-                    fontWeight = FontWeight.W800,
-                    fontFamily = FontFamily(Font(R.font.montserrat_bold)),
-                    letterSpacing = 0.6.sp
-                )
+        } else {
+            Image(
+                painter = rememberAsyncImagePainter(model = chatuser.imageUrl),
+                contentDescription = "Person Profile",
+                modifier = Modifier
+                    .size(55.dp)
+                    .clip(CircleShape),
+                contentScale = ContentScale.Crop
             )
         }
-        HorizontalDivider(
-            thickness = 0.8.dp,
-            color = Color.LightGray,
-            modifier = Modifier
-                .fillMaxWidth(1f)
-                .padding(start = 30.dp, end = 30.dp, top = 10.dp)
+        Spacer(
+            modifier = Modifier.width(10.dp)
         )
+        Text(
+            chatuser.name ?: "",
+            style = TextStyle(
+                fontSize = 18.sp,
+                color = MaterialTheme.colorScheme.onSurface, // Changed from Color.Black
+                fontWeight = FontWeight.W800,
+                fontFamily = FontFamily(Font(R.font.montserrat_bold)),
+                letterSpacing = 0.6.sp
+            )
+        )
+    }
+    HorizontalDivider(
+        thickness = 0.8.dp,
+        color = Color.LightGray,
+        modifier = Modifier
+            .fillMaxWidth(1f)
+            .padding(start = 30.dp, end = 30.dp, top = 10.dp)
+    )
 
 }
 
@@ -467,7 +468,7 @@ fun Header(name: String?) {
     val text = buildAnnotatedString {
         withStyle(
             style = SpanStyle(
-                color = Color.Black,
+                color = MaterialTheme.colorScheme.onBackground, // Changed from Color.Black
                 fontSize = 20.sp,
                 fontWeight = FontWeight.W300
             )
@@ -477,7 +478,7 @@ fun Header(name: String?) {
         withStyle(
             style = SpanStyle(
                 fontSize = 20.sp,
-                color = Color.Black,
+                color = MaterialTheme.colorScheme.onBackground, // Changed from Color.Black
                 fontWeight = FontWeight.Bold
             )
         ) {
@@ -490,6 +491,7 @@ fun Header(name: String?) {
             .padding(start = 20.dp, top = 5.dp, end = 20.dp, bottom = 20.dp)
     )
 }
+
 
 @Composable
 fun AddStoryLayout(onClick: () -> Unit) {

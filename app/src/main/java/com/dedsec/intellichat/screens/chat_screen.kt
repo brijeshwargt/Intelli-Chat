@@ -172,9 +172,9 @@ fun ChatScreen(
                 val alignment =
                     if (msg.senderId == vm.userData.value?.userId) Alignment.End else Alignment.Start
                 val color =
-                    if (msg.senderId == vm.userData.value?.userId) MaterialTheme.colorScheme.secondary else Color.White
+                    if (msg.senderId == vm.userData.value?.userId) MaterialTheme.colorScheme.secondary else MaterialTheme.colorScheme.surface // Changed Color.White
                 val textColor =
-                    if(msg.senderId == vm.userData.value?.userId) Color.White else Color.Black
+                    if (msg.senderId == vm.userData.value?.userId) Color.White else MaterialTheme.colorScheme.onSurface // Changed Color.Black
                 Column(
                     modifier = Modifier
                         .fillMaxWidth()

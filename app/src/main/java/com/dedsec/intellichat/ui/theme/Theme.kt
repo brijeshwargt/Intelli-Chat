@@ -11,41 +11,44 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
 
 private val DarkColorScheme = darkColorScheme(
-    primary = RedDark,
-    secondary = RedNormal,
-    tertiary = RedLight
+    primary = PrimaryBlueDark,
+    secondary = SecondaryBlueDark,
+    tertiary = DarkGrey,
+    background = DarkGrey,
+    surface = DarkGrey,
+    onPrimary = White,
+    onSecondary = White,
+    onBackground = LightText,
+    onSurface = LightText
 )
 
 private val LightColorScheme = lightColorScheme(
-    primary = RedDark,
-    secondary = RedNormal,
-    tertiary = RedLight,
-
-
-    /* Other default colors to override
-    background = Color(0xFFFFFBFE),
-    surface = Color(0xFFFFFBFE),
-    onPrimary = Color.White,
-    onSecondary = Color.White,
-    onTertiary = Color.White,
-    onBackground = Color(0xFF1C1B1F),
-    onSurface = Color(0xFF1C1B1F),
-    */
+    primary = PrimaryBlue,
+    secondary = SecondaryBlue,
+    tertiary = White,
+    background = LightGrey,
+    surface = White,
+    onPrimary = White,
+    onSecondary = TextBlack,
+    onBackground = TextBlack,
+    onSurface = TextBlack
 )
 
 @Composable
 fun ChatUIAppTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     // Dynamic color is available on Android 12+
-    dynamicColor: Boolean = true,
+    dynamicColor: Boolean = false, // Turning this off for a consistent look
     content: @Composable () -> Unit
 ) {
-    val colorScheme =
-        if(darkTheme) {
-            DarkColorScheme
-        } else {
-            LightColorScheme
+    val colorScheme = when {
+        dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> {
+            val context = LocalContext.current
+            if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
         }
+        darkTheme -> DarkColorScheme
+        else -> LightColorScheme
+    }
 
     MaterialTheme(
         colorScheme = colorScheme,

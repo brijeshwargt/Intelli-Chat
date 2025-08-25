@@ -23,6 +23,7 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.ElevatedButton
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
@@ -289,27 +290,26 @@ private fun LoginText() {
         Text(
             text = "Welcome",
             fontSize = 40.sp,
-            color = Color(0xFF171624),
+            color = MaterialTheme.colorScheme.onBackground, // Changed
             fontWeight = FontWeight.Bold,
             letterSpacing = 1.sp,
         )
         Text(
             text = "Back",
             fontSize = 40.sp,
-            color = Color(0xFF171624),
+            color = MaterialTheme.colorScheme.onBackground, // Changed
             fontWeight = FontWeight.Bold,
             letterSpacing = 1.sp,
         )
         Text(
             text = "Hey! Good to see you again",
             fontSize = 20.sp,
-            color = Color(0xFF171624),
+            color = MaterialTheme.colorScheme.onBackground, // Changed
             fontWeight = FontWeight.Normal,
             fontFamily = loginFont,
         )
     }
 }
-
 @Composable
 fun BackgroundImageLogin() {
     Image(

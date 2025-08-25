@@ -130,7 +130,7 @@ fun UserContact(phonenumber: MutableState<String>) {
             text = "Phone :",
             fontSize = 24.sp,
             fontFamily = FontFamily(Font(R.font.montserrat_bold)),
-            color = Color.Black,
+            color = MaterialTheme.colorScheme.onBackground, // Changed from Color.Black
             letterSpacing = (-1).sp
         )
         Card(
@@ -171,12 +171,13 @@ fun UserName(name: MutableState<String>) {
             text = "Name : ",
             fontSize = 24.sp,
             fontFamily = FontFamily(Font(R.font.montserrat_bold)),
-            color = Color.Black,
+            color = MaterialTheme.colorScheme.onBackground, // Changed from Color.Black
             letterSpacing = (-1).sp
-            )
+        )
         Card(
             colors = CardDefaults.cardColors(
-                contentColor = Color.Black, containerColor = Color.White
+                contentColor = MaterialTheme.colorScheme.onSurface, // Changed
+                containerColor = MaterialTheme.colorScheme.surface // Changed
             ),
             border = BorderStroke(2.5.dp, MaterialTheme.colorScheme.primary),
             shape = RoundedCornerShape(30)
